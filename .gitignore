@@ -1,0 +1,5 @@
+public
+tmp
+node_modules
+*~
+*.sublime-*
