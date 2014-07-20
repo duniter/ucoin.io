@@ -1,6 +1,48 @@
 header
-  .container
-    .logo
-      h1
-        a(href="/") uCoin
-    include _main_nav
+  .ui.grid
+    .row
+      .column.tablet.computer.only
+        .ui.menu.fixed.tiny.inverted
+          .container
+            a.item.teal.home(href="/")
+              i.home.icon
+              | Home
+            a.item.theoretical(href="/theoretical")
+              i.bookmark.icon
+              | Theoretical
+            a.item.faq(href="/faq")
+              i.help.icon
+              | FAQ
+            a.item.specs(href="/specs")
+              i.book.icon
+              | Specs
+            a.item.install(href="/install")
+              i.disk.download.icon
+              | Install
+            .right.menu
+              a.item(target="_blank", href="https://github.com/ucoin-io")
+                i.github.icon
+                | Sources
+              a.ui.item(target="_blank", href="http://forum.ucoin.io")
+                i.chat.outline.icon
+                | Forum
+              a.item(target="_blank", href="https://groups.google.com/forum/?hl=fr#!forum/ucoin")
+                i.mail.icon
+                | Mailing List
+      .column.mobile.only
+        .ui.menu.fixed.tiny.inverted
+          a.item.theoretical(href="/theoretical").blue
+            i.bookmark.icon
+          a.item.faq(href="/faq")
+            i.help.icon
+          a.item.specs(href="/specs")
+            i.book.icon
+          a.item.install(href="/install")
+            i.disk.download.icon
+          .right.menu
+            a.item(target="_blank", href="https://github.com/ucoin-io")
+              i.github.icon
+            a.item(target="_blank", href="http://forum.ucoin.io").yellow
+              i.chat.outline.icon
+            a.item(target="_blank", href="https://groups.google.com/forum/?hl=fr#!forum/ucoin")
+              i.mail.icon
