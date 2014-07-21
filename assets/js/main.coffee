@@ -42,8 +42,13 @@ require js, ->
     $("h6:not(.header)").addClass("ui header tiny")
     $("ul:not(.ui.list)").addClass("ui list")
     $("blockquote:not(.ui.message)").addClass("ui message")
+    colors     = ['teal', 'blue', 'orange', 'green']
     $peek      = $('.peek')
     $waypoints = $('.main.container').find('h2').first().siblings('h2').addBack()
+    $waypoints.each (index, item) ->
+        $item = $(item)
+        $('#sidemenu').append('<a href="#' + $item.attr('id') + '" class="item ' + colors[index % 4] + '">' + $item.text() + '</a>')
+    $('#sidemenu a.item').first().addClass('active')
     $peek.waypoint('sticky');
     $('.peek a.item').click ->
         $body     = $('html, body')
@@ -52,59 +57,25 @@ require js, ->
         $group    = $menu.children()
         $headers  = $group.add( $group.find('.menu .item') )
         $waypoint = $waypoints.eq( $group.index( $header ) )
-        offset    = $waypoint.offset().top - 70;
-        $body
-          .stop()
-          .one('scroll', function() {
-            $body.stop();
-          })
-          .animate({
-            scrollTop: offset
-          }, 500)
-      #   $body     = $('html, body')
-      #   $header   = $(this)
-      #   $menu     = $header.parent()
-      #   $group    = $menu.children()
-      #   $headers  = $group.add( $group.find('.menu .item') )
-      #   $waypoint = $waypoints.eq( $group.index( $header ) )
-      #   offset
-      # ;
-      # offset    = $waypoint.offset().top - 70;
-      # if(!$header.hasClass('active') ) {
-      #   $menu
-      #     .addClass('animating')
-      #   ;
-      #   $headers
-      #     .removeClass('active')
-      #   ;
-      #   $body
-      #     .stop()
-      #     .one('scroll', function() {
-      #       $body.stop();
-      #     })
-      #     .animate({
-      #       scrollTop: offset
-      #     }, 500)
-      #     .promise()
-      #       .done(function() {
-      #         $menu
-      #           .removeClass('animating')
-      #         ;
-      #         $headers
-      #           .removeClass('active')
-      #         ;
-      #         $header
-      #           .addClass('active')
-      #         ;
-      #         $waypoint
-      #           .css('color', $header.css('border-right-color'))
-      #         ;
-      #         $waypoints
-      #           .removeAttr('style')
-      #         ;
-      #       })
-      #   ;
-      # }
+        offset    = $waypoint.offset().top - 60;
+        if !$header.hasClass('active')
+          $body
+            .stop()
+            .one 'scroll', ->
+              $body.stop();
+            .animate({
+              scrollTop: offset
+            }, 500)
+            .promise()
+              .done ->
+                $headers
+                  .removeClass('active')
+                $header
+                  .addClass('active')
+                $waypoint
+                  .css('color', $header.css('border-right-color'))
+                $waypoints
+                  .removeAttr('style')
 
 
     # $('#spatial-and-temporal-what-').waypoint ->
