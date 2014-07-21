@@ -44,10 +44,15 @@ require js, ->
     $("blockquote:not(.ui.message)").addClass("ui message")
     colors     = ['teal', 'blue', 'orange', 'green']
     $peek      = $('.peek')
-    $waypoints = $('.main.container').find('h2').first().siblings('h2').addBack()
+    $h2 = $('.main.container').find('h2')
+    $h3 = $('.main.container').find('h3')
+    if $h2.length
+      $waypoints = $h2.first().siblings('h2').addBack()
+    if !$h2.length && $h3.length
+      $waypoints = $h3.first().siblings('h3').addBack()
     $waypoints.each (index, item) ->
         $item = $(item)
-        $('#sidemenu').append('<a href="#' + $item.attr('id') + '" class="item ' + colors[index % 4] + '">' + $item.text() + '</a>')
+        $('#sidemenu').append('<a href="#' + $item.attr('id') + '" class="' + ['item', colors[index % 4], $item.attr('id')].join(' ') + '">' + $item.text() + '</a>')
     $('#sidemenu a.item').first().addClass('active')
     $peek.waypoint('sticky');
     $('.peek a.item').click ->
