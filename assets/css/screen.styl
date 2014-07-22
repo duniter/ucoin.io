@@ -4,6 +4,7 @@ global-reset()
 base()
 
 hero-padding = 40px
+subitem-padding = 0px
 
 body
   font-size: 15px
@@ -15,7 +16,15 @@ header.ui.grid .row > .column
   padding-left 0px
 
 .ui.tiny.menu .item
-  font-size: 0.8rem;
+  font-size: 0.8rem
+
+#sidemenu .sub.item
+  margin-left 8px
+  font-size: 0.8rem
+  padding-top subitem-padding
+  padding-bottom subitem-padding
+  line-height 20px
+  color gray
 
 .ui.segment.hero
   border-radius 0px
@@ -74,3 +83,18 @@ strong
 
 em
   font-style italic
+
+pre
+  font-family Courier
+  background-color #f4f4f4;
+  padding: 10px 15px;
+  color: #333;
+
+p code
+  font-family Courier
+  background-color #f4f4f4;
+  padding: 3px 3px 3px 6px;
+  color: #333;
+
+.warning
+  flash(warning)

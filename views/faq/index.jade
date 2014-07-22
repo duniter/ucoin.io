@@ -3,6 +3,9 @@
     .ui.menu.secondary.pointing.vertical#sidemenu
   .ui.segment.body
     :markdown
+
+      ## General aspects
+
       ### uCoin in 3 words?
       Free Currency System.
 
@@ -21,3 +24,139 @@
 
       ### So, this not like Bitcoin?
       Well, this is a *[cryptocurrency](http://en.wikipedia.org/wiki/Cryptocurrency)* system. Bitcoin is a cryptocurrency system too. But uCoin does not use [Proof of Work](#http://en.wikipedia.org/wiki/Proof-of-work_system) as the main feature to make the currency: instead, uCoin takes advantage of [Web of Trust](http://en.wikipedia.org/wiki/Web_of_trust) mechanisms to identify members & take decentralized decisions.
+
+      ## The protocol
+
+      ### So, how does it work?
+      The whole point of [uCoin protocol (UCP)](/theoretical#protocol) is to build up and update on a regular basis a common document called *Monetary Contract*. Such a document defines *who are the members* of the monetary community and *which currency units (coins) are issued to them*.
+
+      That's it. You've now the idea of what is uCoin doing 100% of its running time: the software is waiting *Monetary Contract* updates so it knows who are the new members, who are the members leaving, and how much money is issued to them.
+
+      More precisely, Community changes are *daily* updates, while money creation (Universal Dividend) is *monthly*.
+
+      ### Waiting for updates? What kind of updates?
+      Almost like Bitcoin, uCoin uses some kind of "blockchain" data, and this data is what uCoin is waiting for. But in uCoin this should rather be called *keychain*, as the only thing uCoin protocol do not know by advance is the flow of members joining & leaving the Community, members represented by their OpenPGP *key*.
+
+      That's why it should be called *keychain*: the pillar data of uCoin is a chain of *digital keys*, which are then used to build up the Contract & receive digital coins.
+
+      ### Keys building the Contract?
+      Exactly: in uCoin, *only members of the Community are able to contribute to the writing of the Monetary Contract*. This is one of deepest protocol rules.
+
+      Also note that no possible ambiguity exits about who are the members and what is their key: public keys are directly written in the keychain, not only their fingerprint. This is done for security reasons to avoid key forging matching the same key fingerprint. No ambiguity, no cheating.
+
+      ### How do members participate writing the Contract?
+      Actually, they only participate to write the *keychain*, since the Contract is a simple "book" whose pages can be written by anyone given some predefined rules applyed to a keychain state.
+
+      That's a big consequence to understand: *keychain* is the heart of the currency, and the Monetary Contract is a simple *deduction* of the keychain. This leads to understand why uCoin protocol focuses to strengthen the robustness of this chain.
+
+      ### And the keychain, how is it built?
+      Keychain is built in a two step process:
+      * first, a random division of the Community into priority zones
+      * second, a trial for making what we call a keyblock, also called *proof-of-consensus*
+
+      Note that *trial is not a competition here*, because there is nothing to win contrary to Bitcoin where this lead to money creation reward. Here, this mechanism just allow to write in the keychain and allow for future Universal Dividend.
+
+      ### Why would members do this if there is no reward?
+      Why wouldn't they? If they are in such a currency system, it should be *precisely* for the global benefits of using a free currency: free economy. Furthermore, a stuck keychain means no Universal Dividend at all for anyone.
+
+      ### Isn't this a painful process?
+      This is a completely automated process, members just have to enable it in their software. Nothing to do manually (even if possible).
+
+      ### How is decided the UD amount?
+      This is a rule defined in uCoin protocol:
+
+          UD(t+1) = MAX(UD(t) ; c * M(t) / N(t+1) )
+
+      With
+
+          c = 0.0036815
+          UD(0) = 100
+          dt ~= 2 weeks
+
+      More precisely, a new UD is created every **1st & 15th of each month** of value `UD(t+1)`.
+
+    .warning Those values are carefully chosen: this leads to a 9.22% annual « c », which is a central symmetry between generations of 80 years life expectancy members.
+
+    :markdown
+
+      Those results may be found in the [RMT (french)](http://wiki.creationmonetaire.info/images/f/f8/TRM_2_718_b.pdf).
+
+      ### How to know a member received the UD?
+      If he was a member at that moment, he *did* receive it. This is just a rule.
+
+      ### How to know an individual is a member?
+      At a *t* instant, an individual is a member if his public key's fingerprint last occurrence *before or at t* in the keychain was `+`.
+      If the last occurrence is `-` or not found, then the individual was not a member at *t*.
+
+      ### How to know the coins created with the UD?
+      This technical detail is described in the [protocol](/theoretical#protocol), but to summarize: coins' values depends on the UD amount, and each coin has a CoinID whose format is:
+
+          AMENDMENT_HASH:AMENDMENT_NUMBER:COIN_NUMBER
+
+      for example:
+
+          61AB4547159CB33042211058AE12126BEB444AB3:504:3
+
+      If you looked at amendment `#504-61AB4547159CB33042211058AE12126BEB444AB3` (if it existed), you could deduce the value of this coin since a rule gives it to you.
+
+      ### How nodes will decide which keys to add to the keychain?
+      First, a key must have [udid2](https://github.com/Open-UDC/open-udc/blob/master/docs/OpenUDC_Authentication_Mechanisms.draft.txt#L164) format UserID in its OpenPGP key, and have sufficient signatures (in both quantity & quality) from existing members in the Community.
+      Second, the owner of the key have to make a request to the network *expressing its will* to join the Community.
+
+      With those 2 prerequisties, a uCoin node is able to add a key in the keychain.
+
+      > N.B. 1: 'sufficient' is clearly detailed in the protocol
+
+      > N.B. 2: a key added to the keychain which *no more* fits the signatures' requirements will automatically be excluded from the Community
+
+      ### What if a keychain conflict happen?
+      First, what is a keychain conflit? This means that two legitimate *keyblock* (aka. proof-of-consensus) were emitted by the network with both *same priority* and *same signatures length*. In such case, there is no particular reason to choose a keyblock or the other.
+
+      In such a situation, a branching of the keychain occurs. Thus, the two branchs can follow their own route while it finds members to support them. This situation actually lead to create 2 different currencies (+ the original one) at the branching point when a UD is written.
+
+      Obviously, one the two branchs will collapse. This decision will depends on members' individual decision to follow a branch or the other.
+
+      ### What if no valid keyblock is emitted?
+      The currency is stuck. What is the probability of such event? Approximately `0`, since a node emitting a 1 length keyblock (a keyblock without consensus) is still a valid keyblock. So unless the network is constituted by only passive nodes, the currency won't be stuck.
+
+      ## Server software
+
+      ### Which OS are supported?
+      ### Which softwares are required?
+      * MongoDB
+      * Node + NPM
+      * GnuPG
+
+      ### How to install uCoin?
+      ### Are there prerequisties before running?
+      * Passive Transaction server: Any PGP key | Existing currencies only
+      * Active Contract server: Member PGP key | New or existing currencies
+
+      ### How to configure it?
+      ### How to start a new currency?
+      ### How to plug to an existing currency?
+
+      ## Client softwares
+      ### How do I join a uCoin based currency?
+      ### What is a signing party?
+      ### How to submit my key?
+      ### How to ask for joining?
+      ### How will I known I joined?
+      ### When will I receive my UD?
+      ### How will I know I received my UD?
+      ### How will I do to spend my UD?
+      ### How to store my transactions?
+      ### How to choose where to store my transactions?
+      ### How to choose where to accept transactions?
+      ### Can I create more than 1 member account?
+      ### Can I create more than 1 non-member account?
+
+      ## Getting involved
+
+      ### How may I help?
+      ### What to learn first?
+      ### As a backend developer?
+      ### As a frontend developer?
+      ### As a mathematician?
+      ### As a preacher?
+      ### The best way to stay tuned?
