@@ -1,0 +1,61 @@
+.community-channels
+  .row
+
+    section.forums
+      :markdown
+        ### [HDC](https://github.com/ucoin-io/ucoin/blob/master/doc/HDC.md)
+
+        A message format used for describing a currency based on OpenPGP and Universal Dividend.
+
+        > Allow currency description
+
+        #### It defines 3 documents:
+
+        * Public Keys for cryptography features
+        * Amendments for describing currency & members
+        * Transactions for exchanging coins
+
+    section.github
+      :markdown
+        ### [Network](https://github.com/ucoin-io/ucoin/blob/master/doc/Network.md)
+
+        A message format for allowing to manage HDC data over a distributed uCoin network.
+
+        > Allow currency decentralization
+
+        #### It defines 4 documents:
+
+        * Peer document for peer's description
+        * Forward document for routing transactions
+        * Status document to know peers' current state
+        * Wallet document to allow coins' distribution
+
+  .row
+
+    section.irc
+      :markdown
+        ### [Registry](https://github.com/ucoin-io/ucoin/blob/master/doc/Registry.md)
+
+        A message format & protocol *on top of* UCP, allowing for automated evolution of a uCoin currency.
+
+        > Allow currency automation
+
+        #### Its goal is to:
+
+        * Automated acceptation of new members
+        * Automated voting of the Contract
+        * Allow for democratic changing of the monetary rules
+
+    section.twitter
+      :markdown
+        ### [HTTP API](https://github.com/ucoin-io/ucoin/blob/master/doc/HTTP_API.md)
+
+        The first existing API implementing both [HDC](https://github.com/ucoin-io/ucoin/blob/master/doc/HDC.md) + 
+        [Network](https://github.com/ucoin-io/ucoin/blob/master/doc/Network.md) + 
+        [Registry](https://github.com/ucoin-io/ucoin/blob/master/doc/Registry.md) over simple HTTP GET/POST methods.
+
+        #### Special features:
+
+        * Security & synchronization through Merkle trees
+        * Implementing HKP protocol (PKS server)
+        * JSON responses
