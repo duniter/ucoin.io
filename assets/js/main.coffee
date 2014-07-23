@@ -45,7 +45,9 @@ require js, ->
     $("blockquote:not(.ui.message)").addClass("ui message")
     colors     = ['teal', 'blue', 'orange', 'green']
     $peek      = $('.peek')
-    $waypoints = $('.main.container').find('h2')
+    $waypoints = $('.main.container').find('h2, h3')
+    if $waypoints.length > 20
+      $waypoints = $('.main.container').find('h2')
     # $h2 = $('.main.container').find('h2')
     # $h3 = $('.main.container').find('h3')
     # if $h2.length
@@ -94,3 +96,8 @@ require js, ->
       if sideitem.length > 0
         $("#sidemenu .item").removeClass('active')
         sideitem.addClass('active')
+
+
+    # Contribute button
+    $("#contribute").click ->
+      $(".getting-involved").click()
