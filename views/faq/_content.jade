@@ -21,29 +21,34 @@
   ### So, this not like Bitcoin?
   Well, this is a *[cryptocurrency](http://en.wikipedia.org/wiki/Cryptocurrency)* system. Bitcoin is a cryptocurrency system too. But uCoin does not use [Proof of Work](#http://en.wikipedia.org/wiki/Proof-of-work_system) as the main feature to make the currency: instead, uCoin takes advantage of [Web of Trust](http://en.wikipedia.org/wiki/Web_of_trust) mechanisms to identify members & take decentralized decisions.
 
+  ### What is a Web of Trust?
+  In OpenPGP world, this refers to a data structure reflecting people's trust between each others.
+
+  Carefully note that *trust* does not mean that people are trustworthy, but only that people trust in *other people's identity*.
+
   ## The protocol
 
   ### So, how does it work?
   The whole point of [uCoin protocol (UCP)](/specs) is to build up and update on a regular basis a common document called *Monetary Contract*. Such a document defines *who are the members* of the monetary community and *which currency units (coins) are issued to them*.
 
-  That's it. You've now the idea of what is uCoin doing 100% of its running time: the software is waiting *Monetary Contract* updates so it knows who are the new members, who are the members leaving, and how much money is issued to them.
+  That's it. You've now the idea of what is uCoin doing 100% of its running time: the software is waiting *data* updates so it knows who are the new members, who are the members leaving, and how much money is issued to them.
 
-  More precisely, Community changes are *daily* updates, while money creation (Universal Dividend) is *monthly*.
+  More precisely, Community changes are *daily* updates, while money creation (Universal Dividend) is *bi-monthly*.
 
-  ### Waiting for updates? What kind of updates?
-  Almost like Bitcoin, uCoin uses some kind of "blockchain" data, and this data is what uCoin is waiting for. But in uCoin this should rather be called *keychain*, as the only thing uCoin protocol do not know by advance is the flow of members joining & leaving the Community, members represented by their OpenPGP *key*.
+  ### Waiting for data updates? What kind of data?
+  Almost like Bitcoin, uCoin uses some kind of "blockchain" data, and this data is what uCoin is waiting for. But in uCoin this should rather be called *keychain*, as the only thing uCoin protocol does not know by advance is the flow of members joining & leaving the Community, members represented by their *OpenPGP key*.
 
-  That's why it should be called *keychain*: the pillar data of uCoin is a chain of *digital keys*, which are then used to build up the Contract & receive digital coins.
+  That's why it should be called *keychain*: the pillar data of uCoin is a chain of *digital keys*, a kind of *Decentralized Identification System*, which is then used to build up the Contract & receive digital coins.
 
   ### Keys building the Contract?
   Exactly: in uCoin, *only members of the Community are able to contribute to the writing of the Monetary Contract*. This is one of deepest protocol rules.
 
-  Also note that no possible ambiguity exits about who are the members and what is their key: public keys are directly written in the keychain, not only their fingerprint. This is done for security reasons to avoid key forging matching the same key fingerprint. No ambiguity, no cheating.
+  Also note that **no possible ambiguity exits about who are the members and what is their key**: public keys are directly written in the keychain, not only their fingerprint. This is done for security reasons to avoid key forging matching the same key fingerprint. No ambiguity, no cheating.
 
   ### How do members participate writing the Contract?
-  Actually, they only participate to write the *keychain*, since the Contract is a simple "book" whose pages can be written by anyone given some predefined rules applyed to a keychain state.
+  Actually, they only participate to write the *keychain*, since the Contract is a simple "book" whose pages can be written by anyone, given some predefined rules applyed to a keychain state.
 
-  That's a big consequence to understand: *keychain* is the heart of the currency, and the Monetary Contract is a simple *deduction* of the keychain. This leads to understand why uCoin protocol focuses to strengthen the robustness of this chain.
+  That's a big consequence to understand: *keychain* is at the heart of the currency, and the Monetary Contract is a simple *deduction* of the keychain. This leads to understand why uCoin protocol focuses to strengthen the robustness of this chain.
 
   ### And the keychain, how is it built?
   Keychain is built in a two step process:
@@ -79,13 +84,13 @@
   Those results may be found in the [RMT (french)](http://wiki.creationmonetaire.info/images/f/f8/TRM_2_718_b.pdf).
 
   ### How to know a member received the UD?
-  If he was a member at that moment, he *did* receive it. This is just a rule.
+  If he was a member at that moment, he *did* receive it. This is just an accepted rule.
 
   ### How to know an individual is a member?
   At a *t* instant, an individual is a member if his public key's fingerprint last occurrence *before or at t* in the keychain was `+`.
   If the last occurrence is `-` or not found, then the individual was not a member at *t*.
 
-  ### How to know the coins created with the UD?
+  ### How to identify the coins created with the UD?
   This technical detail is described in the [protocol](/specs), but to summarize: coins' values depends on the UD amount, and each coin has a CoinID whose format is:
 
       AMENDMENT_HASH:AMENDMENT_NUMBER:COIN_NUMBER
@@ -109,7 +114,7 @@
   ### What if a keychain conflict happen?
   First, what is a keychain conflit? This means that two legitimate *keyblock* (aka. proof-of-consensus) were emitted by the network with both *same priority* and *same signatures length*. In such case, there is no particular reason to choose a keyblock or the other.
 
-  In such a situation, a branching of the keychain occurs. Thus, the two branchs can follow their own route while it finds members to support them. This situation actually lead to create 2 different currencies (+ the original one) at the branching point when a UD is written.
+  So, a branching of the keychain occurs: the two branchs can follow their own route while it finds members to support them. This situation actually lead to create 2 different currencies (+ the original one) at the branching point when a UD is written.
 
   Obviously, one the two branchs will collapse. This decision will depends on members' individual decision to follow a branch or the other.
 
@@ -174,7 +179,7 @@
   What probably uCoin needs the most is: **a logo**!
 
   #### As a mathematician
-  uCoin protocol will use Graph Theory properties to build a Web of Trust of unique & living individuals. Even if uCoin team is made up of engineers/PhDs, Graph Theory is not something easy we probably need experts in that domain.
+  uCoin protocol will use Graph Theory properties to build a Web of Trust of unique & living individuals. Even if uCoin team is made up of engineers/PhDs, Graph Theory is not something easy and we probably need experts in that domain.
 
   So, if Graph Theory is your every day life, **do not hesitate to come to us!**
 
@@ -182,9 +187,9 @@
   Well, here, you do not need us to do the job: speak about uCoin, make articles, share links, knowledge, experiences, whatever! No need to ask, simply do it!
 
   ### What to learn first?
-  Well, if reached this paragraph reading the whole FAQ, you should have a rather good idea of what is uCoin. From there, you should be able to talk about the project with a minimum of background.
+  Well, if reached this paragraph reading the whole FAQ, you should have a rather good idea of what is uCoin. You could go deeper with [Theoretical section](/theoretical). From there, you should be able to talk about the project with a minimum of background.
 
-  If you want to get deeper in uCoin, read [UCP](/specs), this is uCoin protocol. All what you need to know is there, even if not in a tutorial format.
+  If you want to get deeper in uCoin, read [UCP](/specs), this is uCoin protocol. All what you need to know about technical IT stuff is there, even if not in a tutorial format.
 
   Last, you could try to read [RMT](http://fr.wikipedia.org/wiki/Th%C3%A9orie_relative_de_la_monnaie), which is the fundamental theory behind uCoin's way of creating new money.
 
