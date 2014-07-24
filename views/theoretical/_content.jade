@@ -1,22 +1,23 @@
 :markdown
   ## A cryptocurrency system
 
-  uCoin uses the crypto-currency concept introduced by Bitcoin. In those terms, uCoin is like Bitcoin. But uCoin has completely different fundation principles, such as individuals, Web of Trust and Universal Dividend (i.e.: money issued directly by every individual) to do *really* better than Bitcoin.
+  uCoin uses the crypto-currency concept introduced by Bitcoin, which is to use cryptography features such as *signature* to create digital currencies. uCoin fits in this definition, however it has completely different fundation principles than Bitcoin like individuals, Web of Trust and Universal Dividend to do *really* better than Bitcoin.
 
-  Actually, uCoin has a theoretical reference called [Relative Money Theory (french)](http://wiki.creationmonetaire.info/). This theory **demonstrates** that a currency which aims at respecting individual's economic liberties MUST implement the Universal Dividend, which is the only way to avoid both spatial and temporal asymmetry toward money issuance.
+  Actually, uCoin has a theoretical reference called [Relative Money Theory (french)](http://wiki.creationmonetaire.info/). This theory **demonstrates** that a currency which aims at respecting individual's economic liberties MUST implement the Universal Dividend (aka. *Basic Income*), which is the only way to avoid both spatial and temporal asymmetry toward money issuance.
 
-  ## Spatial and temporal what ?
+  ## A spate-time asymmetry
 
-  Those concepts refers to the relative access of individuals to newly created money. Concretely, Bitcoin is both a spatially and temporally asymmetrical money for the following reasons:
+  Spate-time asymmetry refers to the relative access of individuals to newly created money. Concretely, all existing currencies (2014) are both spatially and temporally asymmetrical for their users. Let's take Bitcoin example to understand why.
 
   ### Spatially
 
-  When new Bitcoins are created, only **some** Bitcoin users are credited of brand new Bitcoins. **We believe this is the first injustice.** Some might say
-  > but miners used electricity and time to get it!
+  When new Bitcoins are created, *only some Bitcoin users* are credited of brand new Bitcoins, not the others. **We believe this is the first injustice.** Some might say:
+.ui.message « but miners used their electricity and time to get it! »
+:markdown
 
-  ... we would answer this work *shouldn't be rewarded by newly created Bitcoins*. New Bitcoins should spray the whole Bitcoin community. Miners should be rewared another way, not by money issuance.
+  ... we would answer this work *shouldn't have been rewarded by newly created Bitcoins*. New Bitcoins should spread the whole Bitcoin community. Miners should be rewared another way, not by money issuance.
 
-  Of course, Bitcoin can't create money as a Basic Income since Bitcoin users are not strongly identified, and one might benefit multiple time of money creation if he owns several wallets. uCoin get rid of this problem in its conception.
+  Of course, Bitcoin can't create money through Basic Income since Bitcoin users are not strongly identified, and one might benefit multiple times of money creation if he owned several wallets. uCoin get rid of this problem in its conception by giving *the same amount to everyone*.
 
   ### Temporally
 
@@ -24,34 +25,61 @@
 
   Every member of a monetary community should be equal towards money issuance, and get the same relative amount of new money over the time, *even if he is a later adopter*.
 
-  uCoin aims at fixing this bug too.
+  uCoin aims at fixing this bug too by making Universal Dividend *grow by the time* according to precise rules allowing members equality toward money issuance on a half-lifetime.
 
-  ## How to implement such a system ?
+  ## A solution
 
-  To resolve those problems, the whole idea is to lean on OpenPGP mechanisms to create an authentified monetary community. With OpenPGP, such a community could democratically define the rules within it (who joins or leaves the community, how is created and exchanged money) throught the writing of a common reference approved by a collective signing process : the Monetary Contract.
+  The whole idea is to create a monetary community composed of strongly identified members, and regularly create new money to their benefit through *Universal Dividend*.
 
-  ### The monetary Web of Trust (WoT)
+  This is made possible through Web of Trust concept introduced by OpenPGP format, which allows people to trust each others' identity and be confident enough that a public key represents a unique and living individual.
 
-  The whole basis of uCoin is made up of individuals who chose to trust each other and constitute a community, aka. Web of Trust.
-  > Note that *trust* does not mean considering every member as a trustworthy person: it only means that the community trusts each member is a unique and living person.
+  ### Keychain
+  This Web of Trust is to be written in a common document: the keychain. This document notably gathers:
+  * Public Key of each individual
+  * Signatures of each key for a given identity
+  * Membership requests of each key
+  * Resulting incomers/outcomers of the Web of Trust
 
-  Once a WoT is constituted, new members may only join by cooptation of existing members in the WoT. Cooptation is done throught a two step process:
+  Keychain can be compared to a great book tracing the history of each membership inside the Community. Actually this keychain is even currency agnostic and can be compared to a *Distributed Identification System*.
 
-  * signatures from the current WoT members (a minimal amount of signatures recognizing the new member is required)
-  * explicit request of the new member to integrate the WoT
+  ### Contract
+  From this Keychain, a set of rules defined by [uCoin protocol (UCP)](/specs) allows to *directly deduce* the UD amount of each keyblock (a keychain unit, i.e. a flow of members) and its recipients.
 
-  The acceptation of members is formalized in the *Monetary Contract*.
+    This deduction is also written under a document, the *Monetary Contract*. This document has a particular value to uCoin protocol for two reasons:
+    * First, it is a useful representation of the uCoin currency (it describes it for any *t* time)
+    * Second, coins' ID are *based on it*. So coins reality is directly based on this representation.
 
-  ### The Monetary Contract
+  ### Network & Transactions
+  Finally, the solution is based upon a PGP Network: this is a kind of "new type" of network where each peer is authenticated by its OpenPGP key. In this network, members & non-members may issue transactions to transfer coins they own (because they received it by UD or from someone) to someone else.
 
-  As said earlier, this document details the WoT composition, but it also allows to define money that may be created to individuals. More precisely, this is the commonly agreed reference all the monetary data is based upon.
+  #### Wallets
+  Transactions history and consistency is guaranteed directly by the peers, according to a Wallet document signed by its owner and telling where (i.e. *on which nodes*) is stored the full transaction history of its Wallet. This feature is notably what *prevent the double spending*, since anyone may check that transaction history matches coherence for one or several vouching peers.
 
-  Such a contract is actually a chained list of *amendments*, each amendement defining its own data concerning individuals, money, or both. Each amendment requires to gather enough signatures from the WoT voters to be considered as valid. WoT voters is a list defined in each amendment reflecting people who notified their will to participate in the democratic process.
+  #### Cheating considerations
+  It must be noted here that uCoin **does not** use the same security mechanism as Bitcoin to counter double-spending. This has both benefits & drawbacks. Here are a few:
 
-  ### Coins
+  ##### Drawback: no more *single point* of control
+  With Bitcoin, you had a unique (at least, you thought) source to check: the blockchain. If a transaction was in there, it was done, accepted. You had to wait, but that was OK. A consequence of this point is that, since transactions are no more stored in a chain, people may change it in order to cheat. *That is a real possibility, it has to be understood seriously*.
 
-  Coins are issued directly to WoT members, in accordance with the Monetary Contract specifications. uCoin does not use any particular divisionary money system nor requires to use base 10 for coins value. The choice of coin algorithm is a rule the Community chooses, and may change over the time through the democratic process.
+  So a big change is that with uCoin, each user of the currency has to decide *himself* how to get guarantees on transactions he accepts. Actually, this might seem hard but there is no serious big deal: we just have to use trusted tiers vouching for other users' transactions.
 
-  ### Transactions
+  At least, it is *one* solution. uCoin is agnostic about this. It lets users decide of the best way to go over this problem.
 
-  Transactions are the last entity managed by uCoin: it materializes money ownership. When a coin is issued, it is directly assigned to a precise member. Transactions are the way to change this ownership.
+  ##### Benefit: no more waiting, instant payment
+  Yes, that is a huge benefit compared to Bitcoin: you probably won't have to wait anymore. It could be even quicker than existing Banking system, depending on the chosen solution for accepting/sending transactions.
+
+  ##### Benefit: worldwide compliance
+  Let's face reality: Bitcoin had no change to handle worldwide transactions, it is just not possible to broadcast every single transaction over the whole internet. But uCoin can do it, since transactions are distributed, and only *few* nodes are concerned.
+
+  ## A free economy
+  The goal of all this is to allow people to participate to a *free economy* thanks to a *free currency*. What is a free economy? [Relative Money Theory (french)](http://wiki.creationmonetaire.info/) defines it through 4 economic freedoms:
+
+  * **The freedom to choose your currency system**: because money should not be imposed
+  * **The freedom to access resources**: because we *all* should have access to economic & monetary resources
+  * **The freedom to estimate & produce value**: because value is a purely relative to each individual, in space and time
+  * **The freedom to trade with the money**: because we should not be limited by the avaible money supply
+
+  Those 4 economic freedoms should be understood together, not exclusively. Plus, *"freedom"* has to be understood as "*non-nuisance*". So here, *freedom* does not mean the right to take all of a resource (like water source in a desert) so no more is available to the others.
+
+  Now you get it, this is the goal: *free economy through free currency.*
+  
