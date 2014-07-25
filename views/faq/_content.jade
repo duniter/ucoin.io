@@ -53,7 +53,9 @@
   ### And the keychain, how is it built?
   Keychain is built in a two step process:
   * first, a random division of the Community into priority zones
-  * second, a trial for making what we call a keyblock, also called *proof-of-consensus*
+  * second, a trial for writing the next keyblock in the keychain, through the usage of *proof-of-consensus*
+
+  Here, the goal is to write the next keyblock, the document containing who are the incoming/outcoming members. But to decide who between the members' peers will be able to write it, UCP gives the rule of wainting for a valid *proof-of-consensus*, and between the valids, pick only those with the highest priority zone, and then pick the one with the highest length: i.e., choose the one with the maximum consensus.
 
   Note that *trial is not a competition here*, because there is nothing to win contrary to Bitcoin where this lead to money creation reward. Here, this mechanism just allow to write in the keychain and allow for future Universal Dividend.
 
