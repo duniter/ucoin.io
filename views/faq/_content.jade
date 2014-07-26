@@ -6,7 +6,7 @@
   Free Currency System.
 
   ### Free currency?
-  This is a new word, as no free currency existed before: free currency is one **respecting 4 economical freedoms**, and leading to apply *Universal Dividend* to its members.
+  This is a new word, as no free currency existed before: free currency is one [respecting 4 economical freedoms](/theoretical/#a-free-economy), and leading to apply *Universal Dividend* to its members.
 
   ### Universal Dividend?
   This is also known as *Basic Income*: an amount every individual receives on a regular basis (monthly, annualy, ...) without other condition than being a unique living member of the Community.
@@ -18,46 +18,37 @@
   * Identify unique & living individuals (a.k.a *members* of the monetary community)
   * Allow money transfers through digital signatures
 
-  ### So, this not like Bitcoin?
+  ### So, uCoin is not like Bitcoin?
   Well, this is a *[cryptocurrency](http://en.wikipedia.org/wiki/Cryptocurrency)* system. Bitcoin is a cryptocurrency system too. But uCoin does not use [Proof of Work](#http://en.wikipedia.org/wiki/Proof-of-work_system) as the main feature to make the currency: instead, uCoin takes advantage of [Web of Trust](http://en.wikipedia.org/wiki/Web_of_trust) mechanisms to identify members & take decentralized decisions.
 
   ### What is a Web of Trust?
-  In OpenPGP world, this refers to a data structure reflecting people's trust between each others.
-
-  Carefully note that *trust* does not mean that people are trustworthy, but only that people trust in *other people's identity*.
+  In OpenPGP world, WoT refers to a data structure allowing people to trust each others' identity. In uCoin, it is exactly the same.
 
   ## The protocol
 
   ### So, how does it work?
-  The whole point of [uCoin protocol (UCP)](/specs) is to build up and update on a regular basis a common document called *Monetary Contract*. Such a document defines *who are the members* of the monetary community and *which currency units (coins) are issued to them*.
+  The whole point of [uCoin protocol (UCP)](/specs) is to build up and update on a regular basis a common document called the *Keychain*. Such a document defines *who are the members* of the monetary community. And from this keychain, applying some rules & parameters to know who received new money through Universal Dividend.
 
   That's it. You've now the idea of what is uCoin doing 100% of its running time: the software is waiting *data* updates so it knows who are the new members, who are the members leaving, and how much money is issued to them.
 
-  More precisely, Community changes are *daily* updates, while money creation (Universal Dividend) is *bi-monthly*.
+  ### Waiting for data updates?
+  Yes: keychain is built up using *OpenPGP keys*, *signatures* and *memberships*. Mix all this data to make a coherent mixture, and tada! You have made a *keyblock*, a block of keychain.
 
-  ### Waiting for data updates? What kind of data?
-  Almost like Bitcoin, uCoin uses some kind of "blockchain" data, and this data is what uCoin is waiting for. But in uCoin this should rather be called *keychain*, as the only thing uCoin protocol does not know by advance is the flow of members joining & leaving the Community, members represented by their *OpenPGP key*.
+  ### And what is done with keyblocks?
+  Keyblocks are stacked, together, sequentially. And this makes a keychain.
 
-  That's why it should be called *keychain*: the pillar data of uCoin is a chain of *digital keys*, a kind of *Decentralized Identification System*, which is then used to build up the Contract & receive digital coins.
+  Well, this is not that simple: keyblock are submitted to the community to gather signatures, confirmations. The keyblock with the maximum number of signatures is the one to write to the keychain.
 
-  ### Keys building the Contract?
-  Exactly: in uCoin, *only members of the Community are able to contribute to the writing of the Monetary Contract*. This is one of deepest protocol rules.
+  ### Why this name "keychain"?
+  The pillar data of uCoin is a chain of *digital keys*, an history of them. That is why. Keychain is a kind of *Decentralized Identification System*.
+
+  ### Who can participate to write the next keyblock?
+  In uCoin, *only members of the Community are able to contribute to the writing of the next keyblock*. This is one of deepest protocol rules.
 
   Also note that **no possible ambiguity exits about who are the members and what is their key**: public keys are directly written in the keychain, not only their fingerprint. This is done for security reasons to avoid key forging matching the same key fingerprint. No ambiguity, no cheating.
 
-  ### How do members participate writing the Contract?
-  Actually, they only participate to write the *keychain*, since the Contract is a simple "book" whose pages can be written by anyone, given some predefined rules applyed to a keychain state.
-
-  That's a big consequence to understand: *keychain* is at the heart of the currency, and the Monetary Contract is a simple *deduction* of the keychain. This leads to understand why uCoin protocol focuses to strengthen the robustness of this chain.
-
-  ### And the keychain, how is it built?
-  Keychain is built in a two step process:
-  * first, a random division of the Community into priority zones
-  * second, a trial for writing the next keyblock in the keychain, through the usage of *proof-of-consensus*
-
-  Here, the goal is to write the next keyblock, the document containing who are the incoming/outcoming members. But to decide who between the members' peers will be able to write it, UCP gives the rule of wainting for a valid *proof-of-consensus*, and between the valids, pick only those with the highest priority zone, and then pick the one with the highest length: i.e., choose the one with the maximum consensus.
-
-  Note that *trial is not a competition here*, because there is nothing to win contrary to Bitcoin where this lead to money creation reward. Here, this mechanism just allow to write in the keychain and allow for future Universal Dividend.
+  ### Do every member has to participate writing the next keyblock?
+  No, it is every single member's choice.
 
   ### Why would members do this if there is no reward?
   Why wouldn't they? If they are in such a currency system, it should be *precisely* for the global benefits of using a free currency: free economy. Furthermore, a stuck keychain means no Universal Dividend at all for anyone.
@@ -66,24 +57,24 @@
   This is a completely automated process, members just have to enable it in their software. Nothing to do manually (even if possible).
 
   ### How is decided the UD amount?
-  This is a rule defined in uCoin protocol:
+  The amount is currency specific. But a general rule is defined in uCoin protocol:
 
       UD(t+1) = MAX(UD(t) ; c * M(t) / N(t+1) )
 
-  With
+  The value of the parameters `c`, `UD(0)` and `dt` are to be chosen by the implementation currency. For example, it could be:
 
       c = 0.0036815
       UD(0) = 100
       dt ~= 2 weeks
 
-  More precisely, a new UD is created every **1st & 15th of each month** of value `UD(t+1)`.
+  to lead to a 9.22% annual « c », but issued through 2 weeks chunks.
 
-.ui.warning.message
-  .content Those values are carefully chosen: this leads to a 9.22% annual « c », which is a central symmetry between generations of 80 years life expectancy members.
+.ui.info.message
+  | Note: 9.22% annual « c » is a central symmetry between generations of 80 years life expectancy members. Those results may be found in the 
+  a(href="http://wiki.creationmonetaire.info/images/f/f8/TRM_2_718_b.pdf") RMT
+  | .
 
 :markdown
-
-  Those results may be found in the [RMT (french)](http://wiki.creationmonetaire.info/images/f/f8/TRM_2_718_b.pdf).
 
   ### How to know a member received the UD?
   If he was a member at that moment, he *did* receive it. This is just an accepted rule.
@@ -112,16 +103,6 @@
   > N.B. 1: 'sufficient' will be clearly detailed in the protocol, but is not exactly known yet
 
   > N.B. 2: a key added to the keychain which *no more* fits the signatures' requirements will automatically be excluded from the Community
-
-  ### What if a keychain conflict happen?
-  First, what is a keychain conflit? This means that two legitimate *keyblock* (aka. proof-of-consensus) were emitted by the network with both *same priority* and *same signatures length*. In such case, there is no particular reason to choose a keyblock or the other.
-
-  So, a branching of the keychain occurs: the two branchs can follow their own route while it finds members to support them. This situation actually lead to create 2 different currencies (+ the original one) at the branching point when a UD is written.
-
-  Obviously, one the two branchs will collapse. This decision will depends on members' individual decision to follow a branch or the other.
-
-  ### What if no valid keyblock is emitted?
-  The currency is stuck. What is the probability of such event? Approximately `0`, since a node emitting a 1 length keyblock (a keyblock without consensus) is still a valid keyblock. So unless the network is constituted by only passive nodes, the currency won't be stuck.
 
   ## Server software
 

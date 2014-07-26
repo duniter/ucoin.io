@@ -36,26 +36,26 @@
   ### Keychain
   This Web of Trust is to be written in a common document: the keychain. This document is a *space-time referential*, where *space* represents individuals and *time* the keychain unit: a keyblock.
 
-  So within a keyblock, we both have *time* information (*t*) and a flow of individuals (*di*). From this definition, we can simply deduce the community(t) which is exactly the same as keychain(t), and is the sum of the community variations *di(t)* in the `[0,t]` interval. Another way to say it is: keychain(t) represents the community at a *t* instant.
+  So within a keyblock, we both have *time* information (*t*) and a flow of individuals (*di*). From this definition, we can simply deduce the community(t) (aka keychain(t)) which is the sum of the community variations *di(t)* in the `[0,t]` interval. Another way to say it is: keychain(t) represents the community at a *t* instant.
 
   #### Keyblock content
   A keyblock gathers:
   * Public Key of each individual
-  * Signatures of key's identity
+  * Signatures of key's UserID
   * Membership requests
   * Resulting incomers/outcomers of the keychain
 
   #### To summarize
-  Keychain can be compared to a great book tracing the history of each membership inside the Community. With the keychain, we have the *fundamental referential* of the [Relative Money Theory (french)](http://wiki.creationmonetaire.info/): humans.
-
-  One rather powerful thing is that keychain is even currency agnostic and can be simply assimilated to a general *Distributed Identification System*, and so may be used for other applications.
+  Keychain can be compared to a great book tracing the history of each membership inside the Community. With the keychain, we have the **fundamental referential** of the [Relative Money Theory](http://wiki.creationmonetaire.info/): humans.
 
   ### Contract
-  From this Keychain, a set of rules defined by [uCoin protocol (UCP)](/specs) allows to *directly deduce* the whole *Monetary Contract* individuals may use to make a currency. Indeed, after the space-time definition, we can directly apply chosen rules for creating a currency since individuals are the only variable parameter of a free currency.
+  From this Keychain, a set of rules defined by [uCoin protocol (UCP)](/specs) + *currency parameters* allows to directly deduce the whole *Monetary Contract* of a given currency. Indeed, in free currencies the only unknown variable is the community: we don't know who will be born or who will die. That is why after defining space-time referential (the members), we can directly apply chosen rules for describing the currency.
+
+  > Note that *describing the currency* does not mean describing the economy and exchanges, this is completely different thing: *describing the currency* means describing the members and how is created to money, to whom.
 
     The deduced *Monetary Contract* has a particular value to uCoin protocol for two reasons:
     * First, it is a useful representation of the uCoin currency (it describes it for any *t* time)
-    * Second, coins' ID are *based on it*. So coins reality is directly based on this representation.
+    * Second, coins' ID are *based on it*. **So coins reality is directly based on this representation**.
 
   As a consequence, to know what currency (and its rules) a network node is managing, he only has to display the Contract it deduced. So for any external observer, a simple look at keychain(t) + contract(t) tells him what is the *individuals* referential and what are *the monetary rules*.
 
