@@ -34,20 +34,30 @@
   This is made possible through Web of Trust concept introduced by OpenPGP format, which allows people to trust each others' identity and be confident enough that a public key represents a unique and living individual.
 
   ### Keychain
-  This Web of Trust is to be written in a common document: the keychain. This document notably gathers:
-  * Public Key of each individual
-  * Signatures of each key for a given identity
-  * Membership requests of each key
-  * Resulting incomers/outcomers of the Web of Trust
+  This Web of Trust is to be written in a common document: the keychain. This document is a *space-time referential*, where *space* represents individuals and *time* the keychain unit: a keyblock.
 
-  Keychain can be compared to a great book tracing the history of each membership inside the Community. Actually this keychain is even currency agnostic and can be compared to a *Distributed Identification System*.
+  So within a keyblock, we both have *time* information (*t*) and a flow of individuals (*di*). From this definition, we can simply deduce the community(t) which is exactly the same as keychain(t), and is the sum of the community variations *di(t)* in the `[0,t]` interval. Another way to say it is: keychain(t) represents the community at a *t* instant.
+
+  #### Keyblock content
+  A keyblock gathers:
+  * Public Key of each individual
+  * Signatures of key's identity
+  * Membership requests
+  * Resulting incomers/outcomers of the keychain
+
+  #### To summarize
+  Keychain can be compared to a great book tracing the history of each membership inside the Community. With the keychain, we have the *fundamental referential* of the [Relative Money Theory (french)](http://wiki.creationmonetaire.info/): humans.
+
+  One rather powerful thing is that keychain is even currency agnostic and can be simply assimilated to a general *Distributed Identification System*, and so may be used for other applications.
 
   ### Contract
-  From this Keychain, a set of rules defined by [uCoin protocol (UCP)](/specs) allows to *directly deduce* the UD amount of each keyblock (a keychain unit, i.e. a flow of members) and its recipients.
+  From this Keychain, a set of rules defined by [uCoin protocol (UCP)](/specs) allows to *directly deduce* the whole *Monetary Contract* individuals may use to make a currency. Indeed, after the space-time definition, we can directly apply chosen rules for creating a currency since individuals are the only variable parameter of a free currency.
 
-    This deduction is also written under a document, the *Monetary Contract*. This document has a particular value to uCoin protocol for two reasons:
+    The deduced *Monetary Contract* has a particular value to uCoin protocol for two reasons:
     * First, it is a useful representation of the uCoin currency (it describes it for any *t* time)
     * Second, coins' ID are *based on it*. So coins reality is directly based on this representation.
+
+  As a consequence, to know what currency (and its rules) a network node is managing, he only has to display the Contract it deduced. So for any external observer, a simple look at keychain(t) + contract(t) tells him what is the *individuals* referential and what are *the monetary rules*.
 
   ### Network & Transactions
   Finally, the solution is based upon a PGP Network: this is a kind of "new type" of network where each peer is authenticated by its OpenPGP key. In this network, members & non-members may issue transactions to transfer coins they own (because they received it by UD or from someone) to someone else.
