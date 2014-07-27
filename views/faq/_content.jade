@@ -21,6 +21,9 @@
   ### So, uCoin is not like Bitcoin?
   Well, this is a *[cryptocurrency](http://en.wikipedia.org/wiki/Cryptocurrency)* system. Bitcoin is a cryptocurrency system too. But uCoin does not use [Proof of Work](#http://en.wikipedia.org/wiki/Proof-of-work_system) as the main feature to make the currency: instead, uCoin takes advantage of [Web of Trust](http://en.wikipedia.org/wiki/Web_of_trust) mechanisms to identify members & take decentralized decisions.
 
+  ### No more Proof-of-Work?
+  Well, PoW is still here. But in a largely lower order of magnitude. *Really*.
+
   ### What is a Web of Trust?
   In OpenPGP world, WoT refers to a data structure allowing people to trust each others' identity. In uCoin, it is exactly the same.
 
@@ -37,8 +40,6 @@
   ### And what is done with keyblocks?
   Keyblocks are stacked, together, sequentially. And this makes a keychain.
 
-  Well, this is not that simple: keyblock are submitted to the community to gather signatures, confirmations. The keyblock with the maximum number of signatures is the one to write to the keychain.
-
   ### Why this name "keychain"?
   The pillar data of uCoin is a chain of *digital keys*, an history of them. That is why. Keychain is a kind of *Decentralized Identification System*.
 
@@ -50,8 +51,17 @@
   ### Do every member has to participate writing the next keyblock?
   No, it is every single member's choice.
 
+  ### How is chosen the member who will write the next block?
+  The member is not chosen, any member may write it. This a "competition" where the first member who succeed in generating a valid block who writes it.
+
+  ### Isn't there a risk a single member always succeed in proposing a valid block before others?
+  Yes, that's why when a member succeed to propose a block, his next blocks will require an harder work to be accepted. If he does not succeed for a while, the next blocks will be easier. And so on.
+
+  ### Is there a reward for this work?
+  No reward at all.
+
   ### Why would members do this if there is no reward?
-  Why wouldn't they? If they are in such a currency system, it should be *precisely* for the global benefits of using a free currency: free economy. Furthermore, a stuck keychain means no Universal Dividend at all for anyone.
+  Why wouldn't they? If they are in such a currency system, it should be *precisely* for the global benefits of using a free currency: free economy. Furthermore, a stuck keychain means no Universal Dividend at all for anyone, including them.
 
   ### Isn't this a painful process?
   This is a completely automated process, members just have to enable it in their software. Nothing to do manually (even if possible).
