@@ -10,6 +10,7 @@ require.config({
     'jappix': ['jquery.min']
   },
   "paths": {
+    'jquery': "//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min"
     'semantic': "//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/javascript/semantic.min"
     'waypoints': "//cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.4/waypoints"
     'waypoints-sticky': "//cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.4/waypoints-sticky.min"
