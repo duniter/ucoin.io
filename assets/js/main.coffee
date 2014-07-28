@@ -4,10 +4,10 @@
 require.config({
   "baseUrl": "/js/vendor/",
   "shim": {
-    'semantic': ['jquery.min']
-    'waypoints': ['jquery.min']
+    'semantic': ['jquery']
+    'waypoints': ['jquery']
     'waypoints-sticky': ['waypoints']
-    'jappix': ['jquery.min']
+    'jappix': ['jquery']
   },
   "paths": {
     'jquery': "//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min"
@@ -17,7 +17,7 @@ require.config({
   }
 })
 
-js = ['piwik', 'jquery.min', 'waypoints', 'waypoints-sticky', 'semantic', 'jappix'];
+js = ['piwik', 'jquery', 'waypoints', 'waypoints-sticky', 'semantic', 'jappix'];
 
 # this will fire once the required scripts have been loaded
 require js, ->
