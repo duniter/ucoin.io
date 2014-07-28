@@ -12,8 +12,9 @@ body
   font-family font-stack
   bg "noise.png" repeat
 
-header.ui.grid .row > .column
+header.ui.grid .row .column
   padding-left 0px
+  padding-right 0px
 
 .ui.tiny.menu .item
   font-size: 0.8rem
@@ -57,7 +58,10 @@ blockquote
   padding: 0 15px;
   color: #777;
 
-// @media only screen and (max-width: 1725px)
+@media only screen and (max-width: 768px)
+  .peek, .jm_position
+    display none
+
 .sticky-wrapper .stuck.peek
   height: 0px !important
 
@@ -89,6 +93,7 @@ pre
   background-color #f4f4f4;
   padding: 10px 15px;
   color: #333;
+  overflow: hidden
 
 p code
   font-family Courier

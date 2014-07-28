@@ -9,50 +9,52 @@
   .ui.grid.main.stackable
     .row
       .column
-        .blue.ui.message.small
-          i.icon.attention
-          | This section only contains external references
+        .ui.segment.body
+          .blue.ui.message.small
+            i.icon.attention
+            | This section only contains external references
     .row
       .sixteen.wide.column
-        .ui.two.column.grid
-          .row
-            .column
-              :markdown
-                ### [Protocol](https://github.com/ucoin-io/ucoin/blob/master/doc/Protocol.md)
-                This document defines a set of rules a uCoin node follows for creating free currencies in a three step process:
+        .ui.segment.body
+          .ui.two.column.stackable.grid
+            .row
+              .column
+                :markdown
+                  ### [Protocol](https://github.com/ucoin-io/ucoin/blob/master/doc/Protocol.md)
+                  This document defines a set of rules a uCoin node follows for creating free currencies in a three step process:
 
-                #### 1. Keychain
-                The protocol describes a way of building a keychain, which can be seen an archive where is written every member who joined or leaved the Community, with their respective public key.
+                  #### 1. Keychain
+                  The protocol describes a way of building a keychain, which can be seen an archive where is written every member who joined or leaved the Community, with their respective public key.
 
-                #### 2. Contract
-                The protocol also describes how to deduce a Contract structure according to a keychain. In this part, the protocol notably gives the rules to know what is the UD amount, what are the generated coins and their respective initial owner.
+                  #### 2. Contract
+                  The protocol also describes how to deduce a Contract structure according to a keychain. In this part, the protocol notably gives the rules to know what is the UD amount, what are the generated coins and their respective initial owner.
 
-                #### 3. Network & Transactions
-                The protocol finally describes networking documents and interpretation of them in order to distribute transaction data all over the network. Indeed, in uCoin transactions are *completely distributed*, which means the whole network *does not need* to be aware of every single transaction that happen.
+                  #### 3. Network & Transactions
+                  The protocol finally describes networking documents and interpretation of them in order to distribute transaction data all over the network. Indeed, in uCoin transactions are *completely distributed*, which means the whole network *does not need* to be aware of every single transaction that happen.
 
-              .ui.message.warning
-                i.icon.warning
-                | This document is still in heavy writting and subject to updates!
+                .ui.message.warning
+                  i.icon.warning
+                  | This document is still in heavy writting and subject to updates!
 
-            .column
-              :markdown
-                ### [HTTP API](https://github.com/ucoin-io/ucoin/blob/master/doc/HTTP_API.md)
-                This document defines an HTTP API implementing UCP through simple HTTP GET/POST methods.
+              .column
+                :markdown
+                  ### [HTTP API](https://github.com/ucoin-io/ucoin/blob/master/doc/HTTP_API.md)
+                  This document defines an HTTP API implementing UCP through simple HTTP GET/POST methods.
 
-                #### UCP features:
-                * Allows to receive & build keyblocks
-                * Displays current keychain + corresponding contract
-                * Allows to receive transactions
-                * Allows to receive network documents (peers, wallets, ...)
-                * Displays transactions for given key
-                * Displays coins owned by a given key
+                  #### UCP features:
+                  * Allows to receive & build keyblocks
+                  * Displays current keychain + corresponding contract
+                  * Allows to receive transactions
+                  * Allows to receive network documents (peers, wallets, ...)
+                  * Displays transactions for given key
+                  * Displays coins owned by a given key
 
-                #### Special features:
+                  #### Special features:
 
-                * Security & synchronization through Merkle trees
-                * Implementing HKP protocol (acts as a PKS server)
-                * JSON responses
+                  * Security & synchronization through Merkle trees
+                  * Implementing HKP protocol (acts as a PKS server)
+                  * JSON responses
 
-              .ui.message.warning
-                i.icon.warning
-                | This document is still in heavy writting too!
+                .ui.message.warning
+                  i.icon.warning
+                  | This document is still in heavy writting too!
