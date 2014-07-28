@@ -15,7 +15,7 @@ require.config({
   }
 })
 
-js = ['jquery.min', 'waypoints', 'waypoints-sticky', 'semantic', 'jappix'];
+js = ['piwik', 'jquery.min', 'waypoints', 'waypoints-sticky', 'semantic', 'jappix'];
 
 # this will fire once the required scripts have been loaded
 require js, ->
