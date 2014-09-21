@@ -1,3 +1,7 @@
+.blue.ui.message.small
+  i.icon.attention
+  | This FAQ was significantly updated on September 21th
+
 :markdown
 
   ## General aspects
@@ -14,25 +18,23 @@
   **This is not a redistribution system**. This is a *currency system* where money is directly issued *by* individuals and *to* individuals.
 
   ### How to achieve this?
-  We plan to use cryptography features provided by [OpenPGP](http://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP) to both:
+  uCoin uses cryptography features provided by [Ed25519](http://en.wikipedia.org/wiki/EdDSA) scheme to both:
   * Identify unique & living individuals (a.k.a *members* of the monetary community)
   * Allow money transfers through digital signatures
 
   ### So, uCoin is not like Bitcoin?
-  Well, this is a *[cryptocurrency](http://en.wikipedia.org/wiki/Cryptocurrency)* system. Bitcoin is a cryptocurrency system too. But uCoin does not use [Proof of Work](#http://en.wikipedia.org/wiki/Proof-of-work_system) as the main feature to make the currency: instead, uCoin takes advantage of [Web of Trust](http://en.wikipedia.org/wiki/Web_of_trust) mechanisms to identify members & take decentralized decisions.
+  Well, uCoin is a *[cryptocurrency](http://en.wikipedia.org/wiki/Cryptocurrency)* system and so is Bitcoin. Plus, both systems use [Proof of Work](#http://en.wikipedia.org/wiki/Proof-of-work_system) (PoW). But uCoin takes advantage of [Web of Trust](http://en.wikipedia.org/wiki/Web_of_trust) mechanisms for both applying *Universal Dividend* and considerably save energy power compared to Bitcoin.
 
-  ### No more Proof-of-Work?
-  Well, PoW is still here. But in a largely lower order of magnitude. *Really*.
+  ### Still using Proof of Work?
+  yes, PoW is still here. But in a largely lower order of magnitude. *Really*.
 
   ### What is a Web of Trust?
-  In OpenPGP world, WoT refers to a data structure allowing people to trust each others' identity. In uCoin, it is exactly the same.
+  Web of Trust refers to a data structure allowing people to trust each others' identity. In uCoin, it is exactly the same.
 
   ## The protocol
 
   ### So, how does it work?
-  The whole point of [uCoin protocol (UCP)](/specs) is to build up and update on a regular basis a common document called the *Keychain*. Such a document defines *who are the members* of the monetary community. And from this keychain, applying some rules & parameters to know who received new money through Universal Dividend.
-
-  That's it. You've now the idea of what is uCoin doing 100% of its running time: the software is waiting *data* updates so it knows who are the new members, who are the members leaving, and how much money is issued to them.
+  A *Blockchain*, a common document shared by all the peers of a network, is being regularly updated by specific peers to defined who are the members of the community, how much money exists and who are the owners of it.
 
   ### Waiting for data updates?
   Yes: keychain is built up using *OpenPGP keys*, *signatures* and *memberships*. Mix all this data to make a coherent mixture, and tada! You have made a *keyblock*, a block of keychain.
