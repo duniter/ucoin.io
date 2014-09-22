@@ -31,19 +31,50 @@
   ### What is a Web of Trust?
   Web of Trust refers to a data structure allowing people to trust each others' identity. In uCoin, it is exactly the same.
 
-  ## The protocol
+  ## uCoin for simple users
 
-  ### So, how does it work?
-  A *Blockchain*, a common document shared by all the peers of a network, is being regularly updated by specific peers to defined who are the members of the community, how much money exists and who are the owners of it.
+  ### Who are uCoin users?
 
-  ### Waiting for data updates?
-  Yes: keychain is built up using *OpenPGP keys*, *signatures* and *memberships*. Mix all this data to make a coherent mixture, and tada! You have made a *keyblock*, a block of keychain.
+  ### Why becoming a member?
+
+  ### How becoming a member ?
+
+  ### Which are the WoT rules?
+
+  ### How to know we are a member?
+
+  ### How to receive Universal Dividend?
+
+  ### How to create money from UD?
+
+  ### How to transfer money from UD?
+
+  ### How is calculated the UD amount?
+
+  ### How about non-members?
+
+  ## uCoin for validators
+
+  ### What is a validator?
+
+  ### Where is stored uCoin data?
+
+  ### What is contained within the blockchain?
+
+  ### Who may write blocks into the blockchain?
+
+  ### How is decided which member may write next block?
+
+  ### Does every member has to participate writing the blockchain?
+
+  ### Why participating writing the blockchain?
+
+  ### What if 2 blocks get validated simultaneously?
+
+  ## OLD
 
   ### And what is done with keyblocks?
   Keyblocks are stacked, together, sequentially. And this makes a keychain.
-
-  ### Why this name "keychain"?
-  The pillar data of uCoin is a chain of *digital keys*, an history of them. That is why. Keychain is a kind of *Decentralized Identification System*.
 
   ### Who can participate to write the next keyblock?
   In uCoin, *only members of the Community are able to contribute to the writing of the next keyblock*. This is one of deepest protocol rules.
@@ -64,9 +95,6 @@
 
   ### Why would members do this if there is no reward?
   Why wouldn't they? If they are in such a currency system, it should be *precisely* for the global benefits of using a free currency: free economy. Furthermore, a stuck keychain means no Universal Dividend at all for anyone, including them.
-
-  ### Isn't this a painful process?
-  This is a completely automated process, members just have to enable it in their software. Nothing to do manually (even if possible).
 
   ### How is decided the UD amount?
   The amount is currency specific. But a general rule is defined in uCoin protocol:
@@ -95,27 +123,6 @@
   At a *t* instant, an individual is a member if his public key's fingerprint last occurrence *before or at t* in the keychain was `+`.
   If the last occurrence is `-` or not found, then the individual was not a member at *t*.
 
-  ### How to identify the coins created with the UD?
-  This technical detail is described in the [protocol](/specs), but to summarize: coins' values depends on the UD amount, and each coin has a CoinID whose format is:
-
-      AMENDMENT_HASH:AMENDMENT_NUMBER:COIN_NUMBER
-
-  for example:
-
-      61AB4547159CB33042211058AE12126BEB444AB3:504:3
-
-  If you looked at amendment `#504-61AB4547159CB33042211058AE12126BEB444AB3` (if it existed), you could deduce the value of this coin since a rule gives it to you.
-
-  ### How nodes will decide which keys to add to the keychain?
-  First, a key must have [udid2](https://github.com/Open-UDC/open-udc/blob/master/docs/OpenUDC_Authentication_Mechanisms.draft.txt#L164) format UserID in its OpenPGP key, and have sufficient signatures (in both quantity & quality) from existing members in the Community.
-  Second, the owner of the key have to make a request to the network *expressing its will* to join the Community.
-
-  With those 2 prerequisties, a uCoin node is able to add a key in the keychain.
-
-  > N.B. 1: 'sufficient' will be clearly detailed in the protocol, but is not exactly known yet
-
-  > N.B. 2: a key added to the keychain which *no more* fits the signatures' requirements will automatically be excluded from the Community
-
   ## Server software
 
   ### Which OS are supported?
@@ -126,8 +133,7 @@
   ### Which softwares are required?
   uCoin relies on some external softwares, listed here:
   * MongoDB
-  * Node + NPM
-  * GnuPG
+  * Node.js + NPM
 
   ### How to install uCoin?
   Follow [Install](/install) guide.
