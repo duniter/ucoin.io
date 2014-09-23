@@ -22,18 +22,14 @@
                   ### [Protocol](https://github.com/ucoin-io/ucoin/blob/master/doc/Protocol.md)
                   This document defines a set of rules a uCoin node follows for creating free currencies in a three step process:
 
-                  #### 1. Keychain
-                  The protocol describes a way of building a keychain, which can be seen an archive where is written every member who joined or leaved the Community, with their respective public key.
+                  #### 1. Documents format
+                  The protocol describes a set of documents uCoin nodes will exchange and base their data upon. Documents goes from public keys, identities, memberships & transactions.
 
-                  #### 2. Contract
-                  The protocol also describes how to deduce a Contract structure according to a keychain. In this part, the protocol notably gives the rules to know what is the UD amount, what are the generated coins and their respective initial owner.
+                  #### 2. Rules of interpretation
+                  The protocol also describes how to interprete documents a node receive, and what are the impacts. This is notably what makes a node able to differenciate a good block from a wrong block, an acceptable transaction from a fake one.
 
-                  #### 3. Network & Transactions
-                  The protocol finally describes networking documents and interpretation of them in order to distribute transaction data all over the network. Indeed, in uCoin transactions are *completely distributed*, which means the whole network *does not need* to be aware of every single transaction that happen.
-
-                .ui.message.warning
-                  i.icon.warning
-                  | This document is still in heavy writting and subject to updates!
+                  #### 3. Currency parameters
+                  Because uCoin protocol is a generic protocol, and has only named parameters without precision about its values. These may vary from one currency to another, and will depend on the context & goal of each currency.
 
               .column
                 :markdown
@@ -41,19 +37,17 @@
                   This document defines an HTTP API implementing UCP through simple HTTP GET/POST methods.
 
                   #### UCP features:
-                  * Allows to receive & build keyblocks
-                  * Displays current keychain + corresponding contract
+                  * Allows to receive blocks
+                  * Displays current Web of Trust
+                  * Displays current blockchain
                   * Allows to receive transactions
-                  * Allows to receive network documents (peers, wallets, ...)
-                  * Displays transactions for given key
-                  * Displays coins owned by a given key
+                  * Allows to receive network documents (peers, status, ...)
+                  * Displays transactions for a given key
+                  * Display available certifications
+                  * Display available identities
+                  * ...
 
                   #### Special features:
 
                   * Security & synchronization through Merkle trees
-                  * Implementing HKP protocol (acts as a PKS server)
                   * JSON responses
-
-                .ui.message.warning
-                  i.icon.warning
-                  | This document is still in heavy writting too!
