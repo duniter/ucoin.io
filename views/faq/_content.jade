@@ -31,72 +31,46 @@
   ### What is a Web of Trust?
   Web of Trust refers to a data structure allowing people to trust each others' identity. In uCoin, it is exactly the same.
 
+  ### Is uCoin data encrypted?
+  No, all uCoin data is public & replicated. Anyone using uCoin may have a complete copy of the database including both community & transactions.
+
   ## uCoin for simple users
 
-  ### Who are uCoin users?
+  ### Who can use uCoin?
+  Everybody: an individual, a collective (company, association, ...), there is no restriction here.
 
   ### Why becoming a member?
+  Members are a different kind of users: they have special rights such as creating money & write new data in uCoin system. Members are the pillar of uCoin data.
 
-  ### How becoming a member ?
+  ### Who can become a member?
+  *Only* individuals, more precisely: **unique and living human beings**.
 
-  ### Which are the WoT rules?
+  ### How to subscribe?
+  Newcomers (individual not members yet) have to create their own key, attach an identity to it, and get certified by existing members. Once done, they can simply express their will to join the Web of Trust for the system to accept it.
 
-  ### How to know we are a member?
+  ### What is Web of Trust?
+  Web of Trust (WoT) is a special data structure composed of entities on one hand, and links between them on the other hand. In uCoin, these *entities* are inviduals while *links* are certification of an individual's identity by another one.
+
+  When an individual gets enough links from existing WoT, he then becomes eligible for joining the WoT: when this happens, his identity is considered as *trustable*.
+
+  If individual then express its will to join the WoT, he becomes a *member*.
+
+  ### Which are rules of Web of Trust?
+  Joining the Web of Trust requires to fit 3 conditions:
+
+  * an identity must gathers a minimum number of links
+  * an identity cannot have twice a same link for a given period
+  * an identity must be between [0, maxStep] distance from any other identity
+
+  Where:
+
+  * step `0` is the identity itself
+  * step `n` is an identity directly known by step `n-1`
 
   ### How to receive Universal Dividend?
+  You have to a member of the WoT when Universal Dividend (UD) is being written.
 
-  ### How to create money from UD?
-
-  ### How to transfer money from UD?
-
-  ### How is calculated the UD amount?
-
-  ### How about non-members?
-
-  ## uCoin for validators
-
-  ### What is a validator?
-
-  ### Where is stored uCoin data?
-
-  ### What is contained within the blockchain?
-
-  ### Who may write blocks into the blockchain?
-
-  ### How is decided which member may write next block?
-
-  ### Does every member has to participate writing the blockchain?
-
-  ### Why participating writing the blockchain?
-
-  ### What if 2 blocks get validated simultaneously?
-
-  ## OLD
-
-  ### And what is done with keyblocks?
-  Keyblocks are stacked, together, sequentially. And this makes a keychain.
-
-  ### Who can participate to write the next keyblock?
-  In uCoin, *only members of the Community are able to contribute to the writing of the next keyblock*. This is one of deepest protocol rules.
-
-  Also note that **no possible ambiguity exits about who are the members and what is their key**: public keys are directly written in the keychain, not only their fingerprint. This is done for security reasons to avoid key forging matching the same key fingerprint. No ambiguity, no cheating.
-
-  ### Do every member has to participate writing the next keyblock?
-  No, it is every single member's choice.
-
-  ### How is chosen the member who will write the next block?
-  The member is not chosen, any member may write it. This a "competition" where the first member who succeed in generating a valid block who writes it.
-
-  ### Isn't there a risk a single member always succeed in proposing a valid block before others?
-  Yes, that's why when a member succeed to propose a block, his next blocks will require an harder work to be accepted. If he does not succeed for a while, the next blocks will be easier. And so on.
-
-  ### Is there a reward for this work?
-  No reward at all.
-
-  ### Why would members do this if there is no reward?
-  Why wouldn't they? If they are in such a currency system, it should be *precisely* for the global benefits of using a free currency: free economy. Furthermore, a stuck keychain means no Universal Dividend at all for anyone, including them.
-
-  ### How is decided the UD amount?
+  ### How is decided UD amount?
   The amount is currency specific. But a general rule is defined in uCoin protocol:
 
       UD(t+1) = MAX(UD(t) ; c * M(t) / N(t+1) )
@@ -113,6 +87,108 @@
   | Note: 9.22% annual « c » is a central symmetry between generations of 80 years life expectancy members. Those results may be found in the 
   a(href="http://wiki.creationmonetaire.info/images/f/f8/TRM_2_718_b.pdf") RMT
   | .
+
+:markdown
+
+  ### How to know if I received UD?
+  If you were in WoT when UD was written, then you received it. It is just the protocol's rule.
+
+  ### How to create money from UD?
+  If you received UD, then you are allowed to create money for an amount *exactly equal* to the UD. As a consequence: as long as you do not create it, the money resulting from UD won't exist in the monetary mass.
+
+  ### How to transfer money?
+  You can transfer money by using *Transactions*. Transactions are just like cheques: you write who is the issuer, the recipient, and send it to the network. When it is validated, money has been transfered.
+
+  However, transactions can do more than simple cheque: it may have any number of sources (minimum 1) and any number of recipients (minimum 0).
+
+  Also, it exists 3 different transaction sources:
+  * other transactions
+  * Universal Dividend
+  * transacation fees
+
+  ### What are transaction fees?
+  Remember last paragraph: a transaction may *not* have a recipient. Actually, this is because input amount of a transaction (the sum of its sources) may be superior to the output. In such case difference is given to the member who succeed to write next block.
+
+  Transaction fee are not mandatory, and may be `0` for any transaction.
+
+  ### Why to use transaction fees?
+  uCoin requires its members to handle the network's data, and requires equipment and energy. Transaction fees are a way to encourage members to do this job.
+
+  ### What about non-members?
+  Non-members cannot receive UD, nor benefit from transaction fees. However, they can use transactions to receive & send money to their accounts.
+
+  ### How to know an individual is a member?
+  At any moment, the common data structure of uCoin (the *blockchain*) allows to know it: membership is simply written in it. Anyone may check it.
+
+  ### How is it ensured no member can cheat by having multiple accounts?
+  This is all due to Web of Trust mechanisms. Without being magic, these mechanisms deeply depends on the rules of the WoT.
+
+  In uCoin, WoT rules ensures that the more members the WoT is constituted, the harder it is for fake accounts to stay in. Thus, even if few fake accounts can exist at the beginning (which is already hard since the more little is WoT, the closer are members), these accounts will tend to be mechanically excluded.
+
+  So, it cannot be guaranteed yet that fake identities won't exist. Maybe some mathematics could help us, we do not know yet (but you might help). What we are sure however, is that since only few fake accounts seems to be able to exist, this drawback does not stand in front of the benefits of free currency & free economy.
+
+  ## uCoin for validators
+
+  ### What is a validator?
+  A validator is a person (more precisely, a member) participating to the writing of the blockchain.
+
+  ### Blockchain?
+  Yes, just like Bitcoin and other altcoins, uCoin stores its data in a blockchain. A blockchain is a succession of blocks which are stacked, together, sequentially. Each block contains information about members & transactions.
+
+  A chain of blocks gives 2 major informations, for any `t` time:
+
+  * The Web of Trust state, giving us the information of who is member and received UD
+  * The Transactions state, telling who owns money and why (transaction history)
+
+  ### Why to become a validator?
+  First because for the currency to work, validators are requires: validators are the people *validating* the blockchain, by writing new blocks on top of it. Since blocks define members & transactions, validators are those making the currency dynamic by allowing us creating new money and transfering it to someone else, or even receive money from others.
+
+  Without validators, there *can't* be currency.
+
+  ### Other motivations?
+  Since being a validator requires equipment (a simple PC) plus energy to make it work, a reward system has been thought (copied from Bitcoin) allowing users of the currency to give a little reward to maintainers of the system.
+
+  Of course, amount is free for each transaction. Users may not give anything, but some may. If such feature could motivate some users, we think it is a welcome feature.
+
+  ### Why not allowing non-member to write the blockchain?
+  Because then, we would loose the benefits from identification and would have to do old, energy wasting, centralizing power proof-of-work.
+
+  ### Where is stored uCoin data?
+  We first have the blockchain, which holds WoT and transactions. This blockchain is replicated on each validator's computer, and even on a simple observer wanting to store it (for whatever purpose).
+
+  Secondly, we have private keys of people. Private keys are what allows people to create an identity, certify other people and finally create money from Universal Dividend. For both members & non-members, private keys allows for transaction handling. In such case, privat key is just a synonym for "wallet".
+
+  ### Who may write blocks into the blockchain?
+  As said earlier, only members.
+
+  ### But if members say who are the members, how do we have first members?
+  Very first members do not have to join the Web of Trust: they *are* the WoT. Thereafter, newcomers may join in.
+
+  ### How is decided which member may write next block?
+  It is not decided, any member may write the next block. It is a matter of both chance and difficulty. Indeed, each members have a difficulty level *directly depending* on the previous blocks he succeeded to validate. Hence, a member that do not validate much blocks will increase its chances to validate next one.
+
+  ### Does every member has to participate writing the blockchain?
+  No, everyone is free.
+
+  ### How to succeed writing next block?
+  A member has to pass a trial consisting in building a block whose fingerprint starts with a certain number of zeros. If he succeeds, he may send this block over the network for other members & non-members to accept it.
+
+  ### How is difficulty computed?
+  Precise rule is given in [the protocol](https://github.com/ucoin-io/ucoin/blob/master/doc/Protocol.md#block-fingerprint). Globally, rule is the following:
+
+      NB_ZEROS = MAX [ powZeroMin ; powZeroMin + lastBlockPenality - FLOOR(nbWaitedPeriods) ]
+
+  Where: 
+
+  * `powZeroMin` is the minimum number of zeros for any block,
+  * `lastBlockPenality` is the number of zeros from member's last block, minus `powZeroMin`
+  * `nbWaitedPeriods` is a number of blocks written by other members since last member's written block
+
+  ### What if 2 blocks get validated simultaneously?
+  Each peer cannot handle 2 blockchains, therefore each peer will have to select which block to validate by choosing one or the other.
+
+  ### Isn't there a risk a single member always succeed in proposing a valid block before others?
+  Yes, that's why when a member succeed to propose a block, his next blocks will require an harder work to be accepted. If he does not succeed for a while, the next blocks will be easier. And so on.
 
 :markdown
 
